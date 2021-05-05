@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ADD NEW TASK</title>
+
+</head>
+
+<body>
+<main class="container" role="main" layout:fragment="container">
+    <form th:method="post" th:action="${action} == 'add' ? @{|/administration/${administration_id}/building/add|} : @{/update}"
+          th:object="${building}" name="add new building">
+        <div class="d-flex justify-content-center mt-5">
+            <div class="col-10 col-md-5 mt-5">
+                <!--                    <div class="m-3" th:if="${editMode == true}" th:object="${building}">-->
+                <div class="m-3">
+                    <label for="id" class="form-label">ID</label>
+                    <input type = text th:field="*{id}" id="id" class="form-control" readonly>
+                </div>
+                <!--                    </div>-->
+                <div class="m-3">
+                    <label for="street" class="form-label">Street name</label>
+                    <input type="text" id="street" class="form-control" th:field="*{street}">
+                </div>
+                <div class="m-3">
+                    <label for="number" class="form-label">Building number</label>
+                    <input type="text" id="number" class="form-control" th:field="*{number}">
+                </div>
+                <div class="m-3" th:if="${editMode == true}">
+                    <label for="administration" class="form-label">ID</label>
+                    <input type=text th:field="*{administration.id}" id="administration" class="form-control" readonly>
+                </div>
+
+                <div class="m-3" th:unless="${editMode==true}">
+                    <button type="submit" class="btn btn-dark px-3" id="form-button1">Add Building</button>
+                </div>
+                <div class="m-3" th:if="${editMode==true}">
+                    <button type="submit" class="btn btn-dark px-3" id="form-button2">Update Building</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <script src="myScript.js"></script>
+</main>
+</body>
+</html>

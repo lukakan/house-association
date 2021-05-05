@@ -1,0 +1,22 @@
+
+<!doctype html>
+<html lang="en" class="h-100" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout " layout:decorate="~{layout.html}">
+<head>
+    <meta charset="utf-8">
+    <title>Home</title>
+</head>
+<body>
+    <main class="container" layout:fragment="container">
+        <div class="container-header">
+            <h2>House administration community</h2>
+            <p>Pick up the HAC for your localization</p>
+        </div>
+        <ul class="list-group">
+            <li th:each="administration:${administrations}">
+                <a th:href="@{|/administration/${administration.id}|}" class="list-group-item list-group-item-action" th:text="|${administration.name} (${administration.getBuildings().size()})|"></a>
+            </li>
+        </ul>
+    </main>
+
+</body>
+</html>
